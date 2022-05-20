@@ -1,0 +1,28 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/el-zacharoo/publisher/gen/proto/go
+    override:
+      buf.build/envoyproxy/protoc-gen-validate: go.buf.build/grpc/go/envoyproxy/protoc-gen-validate
+    except:
+      - buf.build/googleapis/googleapis
+plugins:
+  - remote: buf.build/library/plugins/go:v1.27.1-1
+    out: gen/proto/go
+    opt: paths=source_relative
+  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
+    out: gen/proto/go
+    opt: paths=source_relative
+  - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.10.0-1
+    out: gen/proto/go
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
+  - remote: buf.build/grpc-ecosystem/plugins/openapiv2:v2.10.0-1
+    out: gen/proto/openapi
+  - remote: buf.build/jirkad/plugins/protoc-gen-validate:v0.6.7
+    out: gen/proto/go
+    opt:
+      - paths=source_relative
+      - lang=go

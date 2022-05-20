@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto.person.v1;
+
+service PersonService {
+  rpc Create (Request) returns (Response); 
+}
+
+message Request {
+ Person person = 1; 
+}
+
+message Response {
+   Person person = 1; 
+   string message = 2;
+
+}
+
+message Person {
+  string id = 1;
+  string name  = 2;
+}

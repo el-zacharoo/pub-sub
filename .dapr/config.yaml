@@ -1,0 +1,11 @@
+apiVersion: dapr.io/v2alpha1
+kind: Configuration
+metadata:
+  name: daprConfig
+spec:
+  metrics:
+    enabled: false
+  features:
+    - name: ServiceInvocation.NoDefaultContentType
+      enabled: true
+
