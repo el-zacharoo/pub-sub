@@ -27,6 +27,7 @@ func (s Server) Create(ctx context.Context, req *pb.Request) (*pb.Response, erro
 
 	person := req.Person
 	person.Id = uuid.NewString()
+	// message := "Submission for " + person.GetName() + " posted successfully."
 
 	if err := s.Dapr.PublishEvent(
 		context.Background(),

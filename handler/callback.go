@@ -10,7 +10,6 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	// event "go.buf.build/grpc/go/ticctech/common/event/v1"
 	pbsub "github.com/el-zacharoo/publisher/gen/proto/go/person/v1"
 )
 
@@ -36,8 +35,7 @@ func (d CallbackServer) ListTopicSubscriptions(ctx context.Context, in *emptypb.
 // Dapr sends published messages in a CloudEvents 0.3 envelope.
 func (d CallbackServer) OnTopicEvent(ctx context.Context, in *pb.TopicEventRequest) (*pb.TopicEventResponse, error) {
 
-	fmt.Println("OnTopicEvent", in.Path, string(in.Data))
-	// json event data -> event.EventData
+	fmt.Println(in)
 	var person pbsub.Person
 	if err := protojson.Unmarshal(in.Data, &person); err != nil {
 		return &pb.TopicEventResponse{Status: pb.TopicEventResponse_DROP},
