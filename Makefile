@@ -13,14 +13,18 @@ proto:
 .PHONY: run
 run:
 	dapr run \
-		--dapr-http-port 3501 \
-		--dapr-grpc-port 50002 \
-		--app-id sub \
+		--app-id publisher \
 		--app-port 8081 \
 		--app-protocol grpc \
-		--components-path ./.dapr \
+		--config ./.dapr/config.yaml \
+		--components-path ./.dapr/components \
 		go run .
+
+.PHONY: kill
+kill:
+	lsof -P -i TCP -s TCP:LISTEN | grep 8081 | awk '{print $2}' | { read pid; kill -9 ${pid}; }
+	lsof -P -i TCP -s TCP:LISTEN | grep 9091 | awk '{print $2}' | { read pid; kill -9 ${pid}; }
 
 .PHONY: test
 test:
-	go test -v ./...
+	go test -v ./handler/...
