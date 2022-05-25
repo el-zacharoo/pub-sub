@@ -27,7 +27,7 @@ func (s Server) Create(ctx context.Context, req *pb.Request) (*pb.Response, erro
 
 	person := req.Person
 	person.Id = uuid.NewString()
-	// message := "Submission for " + person.GetName() + " posted successfully."
+	message := "Submission for " + person.GetName() + " posted successfully."
 
 	if err := s.Dapr.PublishEvent(
 		context.Background(),
@@ -40,5 +40,5 @@ func (s Server) Create(ctx context.Context, req *pb.Request) (*pb.Response, erro
 	if err := s.Store.CreatePerson(person, md); err != nil {
 		return &pb.Response{}, status.Errorf(codes.Aborted, "%v", err)
 	}
-	return &pb.Response{Message: "Submission for " + person.Name + " posted successfully.", Person: person}, nil
+	return &pb.Response{Message: message, Person: person}, nil
 }

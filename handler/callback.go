@@ -42,8 +42,6 @@ func (d CallbackServer) OnTopicEvent(ctx context.Context, in *pb.TopicEventReque
 			status.Errorf(codes.Aborted, "issue unmarshalling data: %v", err)
 	}
 
-	fmt.Println(&person)
-
 	switch in.Path {
 	case "/create":
 	case "/update":
