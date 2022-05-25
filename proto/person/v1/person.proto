@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package person.v1;
+package proto.person.v1;
 
 service PersonService {
   rpc Create (CreateRequest) returns (CreateResponse); 
