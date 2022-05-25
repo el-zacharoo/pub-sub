@@ -19,10 +19,10 @@ type Server struct {
 	pb.UnimplementedPersonServiceServer
 }
 
-func (s Server) Create(ctx context.Context, req *pb.Request) (*pb.Response, error) {
+func (s Server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateResponse, error) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
-		return &pb.Response{}, status.Errorf(codes.Aborted, "%s", "no incoming context")
+		return &pb.CreateResponse{}, status.Errorf(codes.Aborted, "%s", "no incoming context")
 	}
 
 	person := req.Person
@@ -34,11 +34,11 @@ func (s Server) Create(ctx context.Context, req *pb.Request) (*pb.Response, erro
 		"pubsubsrv", "zacharysPubSub", person,
 		dapr.PublishEventWithContentType("application/json"),
 	); err != nil {
-		return &pb.Response{}, status.Errorf(codes.Aborted, "%s", "error publishing event")
+		return &pb.CreateResponse{}, status.Errorf(codes.Aborted, "%s", "error publishing event")
 	}
 
 	if err := s.Store.CreatePerson(person, md); err != nil {
-		return &pb.Response{}, status.Errorf(codes.Aborted, "%v", err)
+		return &pb.CreateResponse{}, status.Errorf(codes.Aborted, "%v", err)
 	}
-	return &pb.Response{Message: message, Person: person}, nil
+	return &pb.CreateResponse{Message: message, Person: person}, nil
 }

@@ -8,9 +8,9 @@ lint:
   use:
     - DEFAULT
     - COMMENT_ENUM
-    - COMMENT_MESSAGE
-    - COMMENT_RPC
-    - COMMENT_SERVICE
+    # - COMMENT_MESSAGE
+    # - COMMENT_RPC
+    # - COMMENT_SERVICE
 breaking:
   use:
     - FILE

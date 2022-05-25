@@ -1,16 +1,16 @@
 syntax = "proto3";
 
-package proto.person.v1;
+package person.v1;
 
 service PersonService {
-  rpc Create (Request) returns (Response); 
+  rpc Create (CreateRequest) returns (CreateResponse); 
 }
 
-message Request {
+message CreateRequest {
  Person person = 1; 
 }
 
-message Response {
+message CreateResponse {
    Person person = 1; 
    string message = 2;
 

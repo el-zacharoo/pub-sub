@@ -44,6 +44,17 @@
         }
       }
     },
+    "v1CreateResponse": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/v1Person"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "v1Person": {
       "type": "object",
       "properties": {
@@ -51,17 +62,6 @@
           "type": "string"
         },
         "name": {
-          "type": "string"
-        }
-      }
-    },
-    "v1Response": {
-      "type": "object",
-      "properties": {
-        "person": {
-          "$ref": "#/definitions/v1Person"
-        },
-        "message": {
           "type": "string"
         }
       }
