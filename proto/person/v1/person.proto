@@ -13,7 +13,6 @@ message CreateRequest {
 message CreateResponse {
    Person person = 1; 
    string message = 2;
-
 }
 
 message Person {

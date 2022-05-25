@@ -16,8 +16,6 @@ import (
 )
 
 func main() {
-	// initialise Dapr client using DAPR_GRPC_PORT env var
-	// N.B. sleep briefly to give the dapr service time to initialise
 	time.Sleep(2 * time.Second)
 	client, err := dapr.NewClient()
 	if err != nil {
@@ -36,8 +34,6 @@ func main() {
 	pb.RegisterPersonServiceServer(grpcSrv, h)
 
 	ch := handler.CallbackServer{}
-	// cs := ch.(daprpb.AppCallbackServer)
-
 	daprpb.RegisterAppCallbackServer(grpcSrv, ch)
 
 	lis, err := net.Listen("tcp", ":8081")
