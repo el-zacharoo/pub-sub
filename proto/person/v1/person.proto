@@ -4,6 +4,7 @@ package proto.person.v1;
 
 service PersonService {
   rpc Create (CreateRequest) returns (CreateResponse); 
+  rpc Update(UpdateRequest) returns (UpdateResponse);
 }
 
 message CreateRequest {
@@ -13,6 +14,15 @@ message CreateRequest {
 message CreateResponse {
    Person person = 1; 
    string message = 2;
+}
+
+message UpdateRequest {
+  Person person = 1;
+}
+
+message UpdateResponse {
+   Person person = 1;
+  string message = 2;
 }
 
 message Person {

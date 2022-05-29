@@ -42,3 +42,28 @@ func (s Server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateRe
 	}
 	return &pb.CreateResponse{Message: message, Person: person}, nil
 }
+
+func (s Server) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return &pb.UpdateResponse{}, status.Errorf(codes.Aborted, "%s", "no incoming context")
+	}
+
+	person := req.Person
+	id := person.Id
+
+	// publish event
+	if err := s.Dapr.PublishEvent(
+		context.Background(),
+		"pubsubsrv", "zacharysPubSub", person,
+		dapr.PublishEventWithContentType("application/json"),
+	); err != nil {
+		return &pb.UpdateResponse{}, status.Errorf(codes.Aborted, "%s", "error publishing event")
+	}
+
+	if err := s.Store.UpdatePerson(id, md, person); err != nil {
+		return &pb.UpdateResponse{}, status.Errorf(codes.Aborted, "%v", err)
+	}
+
+	return &pb.UpdateResponse{Person: person, Message: "Update Submission for " + person.Name + " successful"}, nil
+}

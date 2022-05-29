@@ -65,6 +65,17 @@
           "type": "string"
         }
       }
+    },
+    "v1UpdateResponse": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/v1Person"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
     }
   }
 }
