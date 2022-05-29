@@ -2,7 +2,6 @@ package store
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -25,11 +24,9 @@ func (s Store) CreatePerson(msg *pb.Person, md metadata.MD) error {
 }
 
 func (s Store) UpdatePerson(id string, md metadata.MD, u *pb.Person) error {
-	insertResult, err := s.locaColl.ReplaceOne(context.Background(), bson.M{"id": id}, u)
+	_, err := s.locaColl.ReplaceOne(context.Background(), bson.M{"id": id}, u)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("\nInserted a Single Document: %v\n", insertResult)
-
 	return err
 }
