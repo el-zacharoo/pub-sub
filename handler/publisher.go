@@ -51,6 +51,7 @@ func (s Server) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateRe
 
 	person := req.Person
 	id := person.Id
+	message := "Update Submission for " + person.Name + " successful"
 
 	// publish event
 	if err := s.Dapr.PublishEvent(
@@ -65,5 +66,5 @@ func (s Server) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateRe
 		return &pb.UpdateResponse{}, status.Errorf(codes.Aborted, "%v", err)
 	}
 
-	return &pb.UpdateResponse{Person: person, Message: "Update Submission for " + person.Name + " successful"}, nil
+	return &pb.UpdateResponse{Person: person, Message: message}, nil
 }
