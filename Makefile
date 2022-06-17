@@ -13,7 +13,7 @@ proto:
 .PHONY: run
 run:
 	dapr run \
-		--app-id publisher \
+		--app-id pubsub \
 		--app-port 8081 \
 		--app-protocol grpc \
 		--config ./.dapr/config.yaml \

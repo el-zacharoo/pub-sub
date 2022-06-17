@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 
-	pb "github.com/el-zacharoo/publisher/gen/proto/go/person/v1"
-	"github.com/el-zacharoo/publisher/store"
+	pb "github.com/el-zacharoo/pubsub/gen/proto/go/person/v1"
+	"github.com/el-zacharoo/pubsub/store"
 )
 
 type Server struct {

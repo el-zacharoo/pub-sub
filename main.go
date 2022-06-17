@@ -10,9 +10,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	pb "github.com/el-zacharoo/publisher/gen/proto/go/person/v1"
-	"github.com/el-zacharoo/publisher/handler"
-	"github.com/el-zacharoo/publisher/store"
+	pb "github.com/el-zacharoo/pubsub/gen/proto/go/person/v1"
+	"github.com/el-zacharoo/pubsub/handler"
+	"github.com/el-zacharoo/pubsub/store"
 )
 
 func main() {

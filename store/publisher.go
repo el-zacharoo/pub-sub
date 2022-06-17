@@ -7,7 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"google.golang.org/grpc/metadata"
 
-	pb "github.com/el-zacharoo/publisher/gen/proto/go/person/v1"
+	pb "github.com/el-zacharoo/pubsub/gen/proto/go/person/v1"
 )
 
 type Storer interface {

@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	pbsub "github.com/el-zacharoo/publisher/gen/proto/go/person/v1"
+	pbsub "github.com/el-zacharoo/pubsub/gen/proto/go/person/v1"
 )
 
 type CallbackServer struct {

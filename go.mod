@@ -1,4 +1,4 @@
-module github.com/el-zacharoo/publisher
+module github.com/el-zacharoo/pubsub
 
 go 1.18
 

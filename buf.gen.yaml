@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/el-zacharoo/publisher/gen/proto/go
+    default: github.com/el-zacharoo/pubsub/gen/proto/go
     override:
       buf.build/envoyproxy/protoc-gen-validate: go.buf.build/grpc/go/envoyproxy/protoc-gen-validate
     except:
