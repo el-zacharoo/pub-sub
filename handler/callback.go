@@ -25,7 +25,7 @@ func (d CallbackServer) ListTopicSubscriptions(ctx context.Context, in *emptypb.
 	return &pb.ListTopicSubscriptionsResponse{
 		Subscriptions: []*pb.TopicSubscription{{
 			PubsubName: "pubsubsrv",
-			Topic:      "zacharysPubSub",
+			Topic:      "create",
 			Routes:     &pb.TopicRoutes{Default: "/create"},
 		}},
 	}, nil
@@ -34,8 +34,6 @@ func (d CallbackServer) ListTopicSubscriptions(ctx context.Context, in *emptypb.
 // OnTopicEvent is fired for events subscribed to.
 // Dapr sends published messages in a CloudEvents 0.3 envelope.
 func (d CallbackServer) OnTopicEvent(ctx context.Context, in *pb.TopicEventRequest) (*pb.TopicEventResponse, error) {
-
-	fmt.Println(in)
 	var person pbsub.Person
 	if err := protojson.Unmarshal(in.Data, &person); err != nil {
 		return &pb.TopicEventResponse{Status: pb.TopicEventResponse_DROP},
@@ -44,7 +42,9 @@ func (d CallbackServer) OnTopicEvent(ctx context.Context, in *pb.TopicEventReque
 
 	switch in.Path {
 	case "/create":
+		fmt.Println(in, "created")
 	case "/update":
+		fmt.Println(in, "changed")
 	default:
 		return &pb.TopicEventResponse{},
 			status.Errorf(codes.Aborted, "unexpected path in OnTopicEvent: %s", in.Path)

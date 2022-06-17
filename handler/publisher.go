@@ -31,7 +31,7 @@ func (s Server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateRe
 
 	if err := s.Dapr.PublishEvent(
 		context.Background(),
-		"pubsubsrv", "zacharysPubSub", person,
+		"pubsubsrv", "create", person,
 		dapr.PublishEventWithContentType("application/json"),
 	); err != nil {
 		return &pb.CreateResponse{}, status.Errorf(codes.Aborted, "%s", "error publishing event")
@@ -56,7 +56,7 @@ func (s Server) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateRe
 	// publish event
 	if err := s.Dapr.PublishEvent(
 		context.Background(),
-		"pubsubsrv", "zacharysPubSub", person,
+		"pubsubsrv", "create", person,
 		dapr.PublishEventWithContentType("application/json"),
 	); err != nil {
 		return &pb.UpdateResponse{}, status.Errorf(codes.Aborted, "%s", "error publishing event")
